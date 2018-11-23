@@ -8,24 +8,15 @@ def test_ice_version(Command, TestinfraBackend):
     host = TestinfraBackend.get_hostname()
     assert Command.exists('icegridnode')
     c = Command('icegridnode --version')
-    if host == 'ice-35':
-        assert c.stderr.startswith('3.5.')
-    else:
-        assert c.stderr.startswith('3.6.')
+    assert c.stderr.startswith('3.6.')
 
 
 def test_icepy_version(Command, TestinfraBackend):
     host = TestinfraBackend.get_hostname()
     c = Command('python -c "import Ice; print Ice.stringVersion()"')
-    if host == 'ice-35':
-        assert c.stdout.startswith('3.5.')
-    else:
-        assert c.stdout.startswith('3.6.')
+    assert c.stdout.startswith('3.6.')
 
 
 def test_ice_devel(Package, TestinfraBackend):
     host = TestinfraBackend.get_hostname()
-    if host == 'ice-35':
-        assert not Package('ice-c++-devel').is_installed
-    else:
-        assert Package('ice-all-devel').is_installed
+    assert Package('ice-all-devel').is_installed
