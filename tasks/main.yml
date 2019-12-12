@@ -1,12 +1,14 @@
 ---
 
-- import_tasks: redhat.yml
-  when: ansible_os_family | lower == 'redhat'
+- import_tasks: redhat7.yml
+  when: >-
+    (ansible_os_family | lower == 'redhat') and
+    (ansible_distribution_major_version == '7')
 
 - import_tasks: debian.yml
   when: ansible_os_family | lower == 'debian'
 
-- name: zeroc ice | symlink ubuntu
+- name: zeroc ice | symlink binaries
   become: true
   file:
     force: true

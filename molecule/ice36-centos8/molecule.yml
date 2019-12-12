@@ -1,0 +1,35 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: molecule/resources/requirements.yml
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: ice36-centos8
+    image: centos:8
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  playbooks:
+    converge: ../resources/playbook.yml
+  inventory:
+    host_vars:
+      ice36-centos8:
+        ice_install_devel: false
+        ice_binaries_symlink_dest: /usr/local/bin
+        # Require Ansible 2.8 for Python 3 support (Ansible 2.7 untested)
+        # https://docs.ansible.com/ansible/latest/reference_appendices/python_3_support.html
+        # ansible_python_interpreter: /usr/bin/python3
+scenario:
+  name: ice36-centos8
+  converge_sequence:
+    - converge
+verifier:
+  name: testinfra
+  directory: ../resources/tests-built/
+  lint:
+    name: flake8

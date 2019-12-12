@@ -6,7 +6,8 @@ Role Name
 
 Install Zeroc Ice.
 
-On Ubuntu this only installs the Ice binaries and required libraries under `/opt/ice/bin` (note this is a symlink).
+On Ubuntu and CentOS 8 this only installs the Ice binaries and required libraries under `/opt/ice/bin` (note this is a symlink).
+CentOS 8 requires Ansible 2.8+ for Python 3 module support.
 
 
 Role Variables
@@ -14,10 +15,10 @@ Role Variables
 
 Optional (expert users only):
 - `ice_install_devel`: Install Ice development packages, default `True`
-- `ice_install_python`: Install Ice Python globally, default `True`, ignored on Ubuntu (always `False`)
-- `ice_python_wheel`: URL to a python wheel package to be installed, ignored on Ubuntu
+- `ice_install_python`: Install Ice Python globally, default `True`, ignored on Ubuntu and CentOS 8 (always `False`)
+- `ice_python_wheel`: URL to a python wheel package to be installed, ignored on Ubuntu and CentOS 8.
   You can use this to provide a precompiled ice-py package for 3.6 as an alternative to automatically compiling from the source package.
-- `ice_binaries_symlink_dest`: Symlink the Ice binaries required by OMERO into this directory e.g. `/usr/local/bin` (Ubuntu only, must exist, if empty don't create symlinks)
+- `ice_binaries_symlink_dest`: Symlink the Ice binaries required by OMERO into this directory e.g. `/usr/local/bin` (Ubuntu and CentOS 8 only, must exist, if empty don't create symlinks)
 
 
 Notes

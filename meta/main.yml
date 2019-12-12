@@ -9,6 +9,7 @@ galaxy_info:
     - name: EL
       versions:
         - 7
+        - 8
     - name: Ubuntu
       versions:
         - bionic
@@ -32,3 +33,17 @@ dependencies:
       deploy_archive_internal_root: >-
         ice-3.6.5-{{ ice_zeroc_ice_ubuntu1804_version }}
     when: ansible_os_family | lower == 'debian'
+  - role: ome.deploy_archive
+    vars:
+      deploy_archive_dest_dir: /opt
+      deploy_archive_src_url: "https://github.com/manics/zeroc-ice-centos8/\
+        releases/download/{{ ice_zeroc_ice_centos8_version }}/\
+        ice-3.6.5-{{ ice_zeroc_ice_centos8_version }}-\
+        centos8-amd64.tar.gz"
+      deploy_archive_sha256: "{{ ice_zeroc_ice_centos8_sha256 }}"
+      deploy_archive_symlink: /opt/ice
+      deploy_archive_internal_root: >-
+        ice-3.6.5-{{ ice_zeroc_ice_centos8_version }}
+    when: >-
+      (ansible_os_family | lower == 'redhat') and
+      (ansible_distribution_major_version == '8')
