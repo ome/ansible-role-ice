@@ -27,5 +27,6 @@ scenario:
     - converge
 verifier:
   name: testinfra
+  directory: ../resources/tests-built/
   lint:
     name: flake8
