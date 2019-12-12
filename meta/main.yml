@@ -18,7 +18,13 @@ galaxy_info:
 
 dependencies:
   - role: ome.basedeps
+    when: >-
+      (ansible_os_family | lower == 'redhat') and
+      (ansible_distribution_major_version == '7')
   - role: ome.java
+    when: >-
+      (ansible_os_family | lower == 'redhat') and
+      (ansible_distribution_major_version == '7')
   # For systems with no upstream binaries most of the work is done here
   - role: ome.deploy_archive
     become: true
