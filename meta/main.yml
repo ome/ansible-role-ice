@@ -62,7 +62,7 @@ dependencies:
   - role: ome.deploy_archive
     vars:
       deploy_archive_dest_dir: /opt
-      deploy_archive_src_url: "https://github.com/manics/zeroc-ice-centos8/\
+      deploy_archive_src_url: "https://github.com/ome/zeroc-ice-centos8/\
         releases/download/{{ ice_zeroc_ice_centos8_version }}/\
         ice-3.6.5-{{ ice_zeroc_ice_centos8_version }}-\
         centos8-amd64.tar.gz"
