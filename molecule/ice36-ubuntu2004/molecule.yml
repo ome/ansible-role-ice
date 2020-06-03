@@ -1,0 +1,32 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: molecule/resources/requirements.yml
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: ice36-ubuntu2004
+    image: ubuntu:20.04
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  playbooks:
+    converge: ../resources/playbook.yml
+  inventory:
+    host_vars:
+      ice36-ubuntu2004:
+        ice_install_devel: false
+        ice_binaries_symlink_dest: /usr/local/bin
+scenario:
+  name: ice36-ubuntu2004
+  converge_sequence:
+    - converge
+verifier:
+  name: testinfra
+  directory: ../resources/tests-built/
+  lint:
+    name: flake8
