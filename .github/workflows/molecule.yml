@@ -30,23 +30,18 @@ jobs:
         scenario: ${{fromJson(needs.list-scenarios.outputs.matrix)}}
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-      # Ansible 2.6 has problems when the remote python version is 3
-      - name: Install ome-ansible-molecule
-        run: |
-          if [ $SCENARIO = ice36all -o $SCENARIO = ice36minimal ]; then
-            python -mpip install 'ome-ansible-molecule==0.4.*'
-          else
-            python -mpip install ansible==2.8.3 molecule==2.22 docker==4.4.1
-          fi
-        env:
-          SCENARIO: ${{ matrix.scenario }}
       - uses: ome/action-ome-ansible-molecule@main
         with:
-          manage-virtualenv: "false"
           scenario: ${{ matrix.scenario }}
 
-# notifications:
-#   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  publish:
+    name: Galaxy
+    if: startsWith(github.ref, 'refs/tags')
+    needs:
+      - test
+    runs-on: ubuntu-20.04
+    steps:
+      - name: galaxy
+        uses: ome/action-ansible-galaxy-publish@main
+        with:
+          galaxy-api-key: ${{ secrets.GALAXY_API_KEY }}
