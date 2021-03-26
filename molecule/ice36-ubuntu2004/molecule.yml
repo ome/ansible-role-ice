@@ -8,8 +8,8 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: ice36-ubuntu1804
-    image: ubuntu:18.04
+  - name: ice36-ubuntu2004
+    image: ubuntu:20.04
 provisioner:
   name: ansible
   lint:
@@ -18,11 +18,11 @@ provisioner:
     converge: ../resources/playbook.yml
   inventory:
     host_vars:
-      ice36-ubuntu1804:
+      ice36-ubuntu2004:
         ice_install_devel: false
         ice_binaries_symlink_dest: /usr/local/bin
 scenario:
-  name: ice36-ubuntu1804
+  name: ice36-ubuntu2004
   converge_sequence:
     - converge
 verifier:

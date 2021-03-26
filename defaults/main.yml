@@ -16,3 +16,11 @@ ice_binaries_symlink_dest: ''
 ice_zeroc_ice_ubuntu1804_version: '0.3.0'
 ice_zeroc_ice_ubuntu1804_sha256: >-
   46bb03753bddf0366e8d6b6d7330c5b3c1fac534d0daa1a0ebd021a759d0e2f8
+
+ice_zeroc_ice_ubuntu2004_version: '0.2.0'
+ice_zeroc_ice_ubuntu2004_sha256: >-
+  482c45154d249da73f9a3062f13c619c661984785221f26c79ced6b28aef3602
+
+ice_zeroc_ice_centos8_version: '0.0.1'
+ice_zeroc_ice_centos8_sha256: >-
+  4cd6061f95a5033c0e38812d20be4b7dc61a15329c44312496ccab48879d29c4
