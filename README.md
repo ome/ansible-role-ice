@@ -6,8 +6,7 @@ Role Name
 
 Install Zeroc Ice.
 
-On Ubuntu and CentOS 8 this only installs the Ice binaries and required libraries under `/opt/ice/bin` (note this is a symlink).
-CentOS 8 requires Ansible 2.8+ for Python 3 module support.
+On Ubuntu this only installs the Ice binaries and required libraries under `/opt/ice/bin` (note this is a symlink).
 
 
 Role Variables
