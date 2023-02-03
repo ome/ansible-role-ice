@@ -20,7 +20,3 @@ ice_zeroc_ice_ubuntu1804_sha256: >-
 ice_zeroc_ice_ubuntu2004_version: '0.2.0'
 ice_zeroc_ice_ubuntu2004_sha256: >-
   482c45154d249da73f9a3062f13c619c661984785221f26c79ced6b28aef3602
-
-ice_zeroc_ice_centos8_version: '0.0.1'
-ice_zeroc_ice_centos8_sha256: >-
-  4cd6061f95a5033c0e38812d20be4b7dc61a15329c44312496ccab48879d29c4
