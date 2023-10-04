@@ -13,10 +13,10 @@ ice_binaries_symlink_dest: ''
 # Expert users only!
 ######################################################################
 
-ice_zeroc_ice_ubuntu1804_version: '0.3.0'
-ice_zeroc_ice_ubuntu1804_sha256: >-
-  46bb03753bddf0366e8d6b6d7330c5b3c1fac534d0daa1a0ebd021a759d0e2f8
+ice_zeroc_ice_ubuntu2204_version: '20221004'
+ice_zeroc_ice_ubuntu2204_sha256: >-
+  05e5148f7df0dfc6f06ee2e4445419f95d5b19e4fc8c99660d93af13fb14e709
 
-ice_zeroc_ice_ubuntu2004_version: '0.2.0'
-ice_zeroc_ice_ubuntu2004_sha256: >-
-  482c45154d249da73f9a3062f13c619c661984785221f26c79ced6b28aef3602
+ice_zeroc_ice_rockylinux9_version: '20221004'
+ice_zeroc_ice_rockylinux9_sha256: >-
+  ff1d0bb418ed4ad0b9637e15086d847b686944d874c326457f98a560ec10d7ed

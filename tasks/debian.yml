@@ -5,7 +5,8 @@
 
 - name: zeroc ice | dependencies
   become: true
-  apt:
+  ansible.builtin.apt:
+    update_cache: true
     name:
       - libdb5.3
       - libdb5.3++

@@ -1,35 +1,54 @@
 ---
 # tasks file for roles/ice
 
-- name: zeroc ice | setup repository
+- name: zeroc ice | install config-manager
   become: true
-  get_url:
-    dest: /etc/yum.repos.d/zeroc-ice-el7.repo
-    url: "https://zeroc.com/download/Ice/3.6/el7/zeroc-ice3.6.repo"
-
-- name: zeroc ice | install runtime packages
-  become: true
-  yum:
+  ansible.builtin.dnf:
+    update_cache: true
     name:
-      - glacier2
-      - icebox
-      - icegrid
-      - icepatch2
-      - libfreeze3.6-c++
-      - libice3.6-c++
-      - libicestorm3.6
+      - 'dnf-command(config-manager)'
     state: present
 
-- name: zeroc ice | install devel packages
+#- name: zeroc ice | set-enabled crb
+#  become: true
+#  ansible.builtin.command: dnf config-manager --set-enabled crb
+#  state: present
+
+- name: zeroc ice | Enable crp repo
+  ansible.builtin.replace:
+    path:  /etc/yum.repos.d/rocky.repo
+    # create: false
+    regexp: enabled=0
+    replace: enabled=1
+    # state: present
+
+- name: zeroc ice | install libdb
   become: true
-  yum:
-    name: ice-all-devel
+  ansible.builtin.dnf:
+    update_cache: true
+    name:
+      - libdb-cxx
     state: present
-  when: ice_install_devel
+
+# - name: zeroc ice | command echo lib64
+#   ansible.builtin.command: echo /opt/ice-3.6.5/lib64 > /etc/ld.so.conf.d/ice-x86_64.conf
+#   become: true
+
+# - name: zeroc ice | command ldconfig
+#   ansible.builtin.command: ldconfig
+#   become: true
+
+- name: zero ice | install python
+  become: true
+  ansible.builtin.dnf:
+    update_cache: true
+    name: python
+    state: present
 
 - name: zeroc ice | install ice pip dependencies
   become: true
-  yum:
+  ansible.builtin.dnf:
+    update_cache: true
     name:
       - gcc
       - gcc-c++

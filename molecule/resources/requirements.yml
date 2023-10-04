@@ -1,4 +1,11 @@
 ---
-- src: ome.basedeps
-- src: ome.java
-- src: ome.deploy_archive
+
+- name: deploy_archive
+  src: https://github.com/khaledk2/ansible-role-deploy-archive/
+  version: update_to_use_rockylinux9_and_ubuntu2204
+- name: basedeps
+  src: https://github.com/glyg/ansible-role-basedeps/
+  version: glyg
+- name: java
+  src: https://github.com/glyg/ansible-role-java/
+  version: glyg
