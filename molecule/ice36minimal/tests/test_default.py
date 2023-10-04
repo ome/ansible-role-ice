@@ -16,7 +16,7 @@ def test_ice_version(host):
 def test_icepy_version(host):
     c = host.run('python -c "import Ice"')
     assert c.rc == 1
-    assert 'No module named Ice' in c.stderr
+    assert "No module named \'Ice\'" in c.stderr
 
 
 def test_ice_devel(host):
