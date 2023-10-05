@@ -14,10 +14,10 @@
 #  ansible.builtin.command: dnf config-manager --set-enabled crb
 #  state: present
 
-- name: zeroc ice | check if rocky.repo exist
+- name : zeroc ice | check rocky.repo file
   stat:
     path: /etc/yum.repos.d/rocky.repo
-    register: rocky_name
+  register: rockyrepo_name
 
 - name: zeroc ice | Enable crp repo in rocky
   ansible.builtin.replace:
@@ -26,14 +26,13 @@
     regexp: enabled=0
     replace: enabled=1
     # state: present
-  when: rocky_name.stat.exists
+  when: rockyrepo_name.stat.exists
 
-- name: system packages | basic system utils
+- name: zeroc ice | Add CRB repository for RHEL
   become: true
-  ansible.builtin.dnf:
-    name: "{{ basedeps_packages.redhat }}"
-    state: present
-  when: ansible_os_family == 'RedHat'
+  ansible.builtin.command:
+    subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+  when: ansible_os_family == 'RedHat' and not rockyrepo_name.stat.exists
 
 - name: zeroc ice | install libdb
   become: true
