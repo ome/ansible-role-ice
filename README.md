@@ -2,7 +2,7 @@ Role Name
 =========
 
 [![Actions Status](https://github.com/ome/ansible-role-ice/workflows/Molecule/badge.svg)](https://github.com/ome/ansible-role-ice/actions)
-[![Ansible Role](https://img.shields.io/ansible/role/41081.svg)](https://galaxy.ansible.com/ome/ice/)
+[![Ansible Role](https://img.shields.io/badge/ansible--galaxy-ice-blue.svg)](https://galaxy.ansible.com/ui/standalone/roles/ome/ice/)
 
 Install Zeroc Ice.
 
