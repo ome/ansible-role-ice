@@ -17,18 +17,18 @@ galaxy_info:
   galaxy_tags: []
 
 dependencies:
-  - role: basedeps
+  - role: ome.basedeps
     when: >-
       (ansible_os_family | lower == 'redhat') and
       (ansible_distribution_major_version == '9')
 
-  - role: java
+  - role: ome.java
     when: >-
       (ansible_os_family | lower == 'redhat') and
       (ansible_distribution_major_version == '9')
   # For systems with no upstream binaries most of the work is done here
 
-  - role: deploy_archive
+  - role: ome.deploy_archive
     become: true
     vars:
       deploy_archive_dest_dir: /opt
@@ -43,7 +43,7 @@ dependencies:
       (ansible_os_family | lower == 'debian') and
       (ansible_distribution_major_version == '22')
 
-  - role: deploy_archive
+  - role: ome.deploy_archive
     become: true
     vars:
       deploy_archive_dest_dir: /opt
