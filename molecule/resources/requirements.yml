@@ -1,5 +1,5 @@
 ---
 
-- role: ome.deploy_archive
-- role: ome.basedeps
-- role: ome.java
+- src: ome.deploy_archive
+- src: ome.basedeps
+- src: ome.java
