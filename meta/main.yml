@@ -8,11 +8,10 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - 7
+        - 9
     - name: Ubuntu
       versions:
-        - bionic
-        - focal
+        - jammy
   namespace: ome
   role_name: ice
   galaxy_tags: []
@@ -21,41 +20,40 @@ dependencies:
   - role: ome.basedeps
     when: >-
       (ansible_os_family | lower == 'redhat') and
-      (ansible_distribution_major_version == '7')
+      (ansible_distribution_major_version == '9')
+
   - role: ome.java
     when: >-
       (ansible_os_family | lower == 'redhat') and
-      (ansible_distribution_major_version == '7')
+      (ansible_distribution_major_version == '9')
   # For systems with no upstream binaries most of the work is done here
 
   - role: ome.deploy_archive
     become: true
     vars:
       deploy_archive_dest_dir: /opt
-      deploy_archive_src_url: "https://github.com/ome/zeroc-ice-ubuntu1804/\
-        releases/download/{{ ice_zeroc_ice_ubuntu1804_version }}/\
-        ice-3.6.5-{{ ice_zeroc_ice_ubuntu1804_version }}-\
-        ubuntu1804-amd64.tar.gz"
-      deploy_archive_sha256: "{{ ice_zeroc_ice_ubuntu1804_sha256 }}"
+      deploy_archive_src_url: "https://github.com/\
+      glencoesoftware/zeroc-ice-ubuntu2204-x86_64/releases/\
+      download/{{ ice_zeroc_ice_ubuntu2204_version }}/Ice-3.6.5-ubuntu2204-x86_64.tar.gz"
+      deploy_archive_sha256: "{{ ice_zeroc_ice_ubuntu2204_sha256 }}"
       deploy_archive_symlink: /opt/ice
       deploy_archive_internal_root: >-
-        ice-3.6.5-{{ ice_zeroc_ice_ubuntu1804_version }}
+          Ice-3.6.5
     when: >-
       (ansible_os_family | lower == 'debian') and
-      (ansible_distribution_major_version == '18')
+      (ansible_distribution_major_version == '22')
 
   - role: ome.deploy_archive
     become: true
     vars:
       deploy_archive_dest_dir: /opt
-      deploy_archive_src_url: "https://github.com/ome/zeroc-ice-ubuntu2004/\
-        releases/download/{{ ice_zeroc_ice_ubuntu2004_version }}/\
-        ice-3.6.5-{{ ice_zeroc_ice_ubuntu2004_version }}-\
-        ubuntu2004-amd64.tar.gz"
-      deploy_archive_sha256: "{{ ice_zeroc_ice_ubuntu2004_sha256 }}"
+      deploy_archive_src_url: "https://github.com/\
+      glencoesoftware/zeroc-ice-rhel9-x86_64/releases/\
+      download/{{ ice_zeroc_ice_rockylinux9_version }}/Ice-3.6.5-rhel9-x86_64.tar.gz"
+      deploy_archive_sha256: "{{ ice_zeroc_ice_rockylinux9_sha256 }}"
       deploy_archive_symlink: /opt/ice
       deploy_archive_internal_root: >-
-        ice-3.6.5-{{ ice_zeroc_ice_ubuntu2004_version }}
+          Ice-3.6.5
     when: >-
-      (ansible_os_family | lower == 'debian') and
-      (ansible_distribution_major_version == '20')
+      (ansible_os_family | lower == 'redhat') and
+      (ansible_distribution_major_version == '9')

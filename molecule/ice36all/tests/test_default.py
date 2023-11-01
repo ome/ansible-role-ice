@@ -14,9 +14,9 @@ def test_ice_version(host):
 
 
 def test_icepy_version(host):
-    c = host.run('python -c "import Ice; print Ice.stringVersion()"')
+    c = host.run('python -c "import Ice; print (Ice.stringVersion())"')
     assert c.stdout.startswith('3.6.')
 
 
 def test_ice_devel(host):
-    assert host.package('ice-all-devel').is_installed
+    assert not host.package('ice-all-devel').is_installed
