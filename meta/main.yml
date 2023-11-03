@@ -4,7 +4,7 @@ galaxy_info:
   description: ZeroC Ice including Python
   company: Open Microscopy Environment
   license: BSD
-  min_ansible_version: 2.6
+  min_ansible_version: 2.10
   platforms:
     - name: EL
       versions:
@@ -15,45 +15,3 @@ galaxy_info:
   namespace: ome
   role_name: ice
   galaxy_tags: []
-
-dependencies:
-  - role: ome.basedeps
-    when: >-
-      (ansible_os_family | lower == 'redhat') and
-      (ansible_distribution_major_version == '9')
-
-  - role: ome.java
-    when: >-
-      (ansible_os_family | lower == 'redhat') and
-      (ansible_distribution_major_version == '9')
-  # For systems with no upstream binaries most of the work is done here
-
-  - role: ome.deploy_archive
-    become: true
-    vars:
-      deploy_archive_dest_dir: /opt
-      deploy_archive_src_url: "https://github.com/\
-      glencoesoftware/zeroc-ice-ubuntu2204-x86_64/releases/\
-      download/{{ ice_zeroc_ice_ubuntu2204_version }}/Ice-3.6.5-ubuntu2204-x86_64.tar.gz"
-      deploy_archive_sha256: "{{ ice_zeroc_ice_ubuntu2204_sha256 }}"
-      deploy_archive_symlink: /opt/ice
-      deploy_archive_internal_root: >-
-          Ice-3.6.5
-    when: >-
-      (ansible_os_family | lower == 'debian') and
-      (ansible_distribution_major_version == '22')
-
-  - role: ome.deploy_archive
-    become: true
-    vars:
-      deploy_archive_dest_dir: /opt
-      deploy_archive_src_url: "https://github.com/\
-      glencoesoftware/zeroc-ice-rhel9-x86_64/releases/\
-      download/{{ ice_zeroc_ice_rockylinux9_version }}/Ice-3.6.5-rhel9-x86_64.tar.gz"
-      deploy_archive_sha256: "{{ ice_zeroc_ice_rockylinux9_sha256 }}"
-      deploy_archive_symlink: /opt/ice
-      deploy_archive_internal_root: >-
-          Ice-3.6.5
-    when: >-
-      (ansible_os_family | lower == 'redhat') and
-      (ansible_distribution_major_version == '9')
