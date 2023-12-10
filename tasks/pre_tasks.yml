@@ -59,8 +59,7 @@ download/{{ ice_zeroc_ice_rockylinux9_version }}/Ice-3.6.5-rhel9-x86_64.tar.gz"
   vars:
     deploy_archive_dest_dir: /opt
     deploy_archive_src_url: "https://github.com/\
-                             glencoesoftware/zeroc-ice-rhel9-x86_64/releases/\
-                             download/{{ ice_zeroc_ice_aarch64_version}}/Ice-3.6.5-rhel9-x86_64.tar.gz"
+    khaledk2/ice-archh-64/releases/download/new_tag/ice-3.6.5.tar.gz"
     deploy_archive_sha256: "{{ ice_zeroc_ice_aarch64_sha256 }}"
     deploy_archive_symlink: /opt/ice
     deploy_archive_internal_root: >-
