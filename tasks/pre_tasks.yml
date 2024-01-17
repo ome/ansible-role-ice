@@ -68,3 +68,24 @@ download/{{ ice_zeroc_ice_rockylinux9_version }}/Ice-3.6.5-rhel9-x86_64.tar.gz"
         (ansible_os_family | lower == 'redhat') and
         (ansible_distribution_major_version == '9') and
         (ansible_facts.get('architecture') == 'aarch64')
+
+- name: zero ice | install bzip2
+  become: true
+  ansible.builtin.dnf:
+    update_cache: true
+    name: https://dl.rockylinux.org/pub/rocky/9/BaseOS/aarch64/os/Packages/b/bzip2-libs-1.0.8-8.el9.aarch64.rpm
+    state: present
+  when: >-
+    (ansible_os_family | lower == 'redhat') and
+    (ansible_distribution_major_version == '9') and
+    (ansible_facts.get('architecture') == 'aarch64')
+
+- name: zeroc ice | Create symbolic link
+  file:
+    src: /usr/lib64/libbz2.so.1.0.8
+    dest: /usr/lib64/libbz2.so.1.0
+    state: link
+  when: >-
+    (ansible_os_family | lower == 'redhat') and
+    (ansible_distribution_major_version == '9') and
+    (ansible_facts.get('architecture') == 'aarch64')
