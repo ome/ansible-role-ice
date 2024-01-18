@@ -20,3 +20,7 @@ ice_zeroc_ice_ubuntu2204_sha256: >-
 ice_zeroc_ice_rockylinux9_version: '20230928'
 ice_zeroc_ice_rockylinux9_sha256: >-
   ff1d0bb418ed4ad0b9637e15086d847b686944d874c326457f98a560ec10d7ed
+
+ice_zeroc_ice_aarch64_version: '20230928'
+ice_zeroc_ice_aarch64_sha256: >-
+  67672ad1ee7564b4977d3957e5c1c743c233fffab999b8c0228dda6f7b9cddc4

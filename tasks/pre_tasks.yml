@@ -14,6 +14,9 @@
     (ansible_os_family | lower == 'redhat') and
     (ansible_distribution_major_version == '9')
 
+- name: zero ice | Discplay architecture
+  ansible.builtin.debug:
+    msg: "SYstem architecture is:===>>>>>>>>>: {{ ansible_facts.get('architecture') }}"
 
 - name: zeroc ice | Include ome.jadeploy_archiveva debian
   include_role:
@@ -32,7 +35,7 @@
       (ansible_distribution_major_version == '22')
 
 
-- name: zeroc ice | Include ome.jadeploy_archiveva redhat
+- name: zeroc ice | Include ome.jadeploy_archiveva x86_64 redhat
   include_role:
       name: ome.deploy_archive
   vars:
@@ -46,4 +49,43 @@ download/{{ ice_zeroc_ice_rockylinux9_version }}/Ice-3.6.5-rhel9-x86_64.tar.gz"
       Ice-3.6.5
   when: >-
         (ansible_os_family | lower == 'redhat') and
-        (ansible_distribution_major_version == '9')
+        (ansible_distribution_major_version == '9') and
+        (ansible_facts.get('architecture') == 'x86_64')
+
+
+- name: zeroc ice | Include ome.jadeploy_archiveva aarch64 redhat
+  include_role:
+      name: ome.deploy_archive
+  vars:
+    deploy_archive_dest_dir: /opt
+    deploy_archive_src_url: "https://github.com/\
+    khaledk2/ice-archh-64/releases/download/new_tag/ice-3.6.5.tar.gz"
+    deploy_archive_sha256: "{{ ice_zeroc_ice_aarch64_sha256 }}"
+    deploy_archive_symlink: /opt/ice
+    deploy_archive_internal_root: >-
+      ice-3.6.5
+  when: >-
+        (ansible_os_family | lower == 'redhat') and
+        (ansible_distribution_major_version == '9') and
+        (ansible_facts.get('architecture') == 'aarch64')
+
+- name: zero ice | install bzip2
+  become: true
+  ansible.builtin.dnf:
+    update_cache: true
+    name: https://dl.rockylinux.org/pub/rocky/9/BaseOS/aarch64/os/Packages/b/bzip2-libs-1.0.8-8.el9.aarch64.rpm
+    state: present
+  when: >-
+    (ansible_os_family | lower == 'redhat') and
+    (ansible_distribution_major_version == '9') and
+    (ansible_facts.get('architecture') == 'aarch64')
+
+- name: zeroc ice | Create symbolic link
+  file:
+    src: /usr/lib64/libbz2.so.1.0.8
+    dest: /usr/lib64/libbz2.so.1.0
+    state: link
+  when: >-
+    (ansible_os_family | lower == 'redhat') and
+    (ansible_distribution_major_version == '9') and
+    (ansible_facts.get('architecture') == 'aarch64')
