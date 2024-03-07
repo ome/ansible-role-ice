@@ -23,6 +23,7 @@
   when: rockyrepo_name.stat.exists
 
 - name: zeroc ice | Enable crp repo in rocky
+  become: true
   ansible.builtin.replace:
     path:  /etc/yum.repos.d/rocky.repo
     # create: false
