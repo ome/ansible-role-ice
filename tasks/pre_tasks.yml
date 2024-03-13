@@ -19,6 +19,7 @@
   include_role:
     name: ome.deploy_archive
   vars:
+    ansible_become: yes
     deploy_archive_dest_dir: /opt
     deploy_archive_src_url: "https://github.com/\
    glencoesoftware/zeroc-ice-ubuntu2204-x86_64/releases/\
@@ -36,6 +37,7 @@
   include_role:
       name: ome.deploy_archive
   vars:
+    ansible_become: yes
     deploy_archive_dest_dir: /opt
     deploy_archive_src_url: "https://github.com/\
 glencoesoftware/zeroc-ice-rhel9-x86_64/releases/\
