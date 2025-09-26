@@ -45,14 +45,6 @@
       - libdb-cxx
     state: present
 
-# - name: zeroc ice | command echo lib64
-#   ansible.builtin.command: echo /opt/ice-3.6.5/lib64 > /etc/ld.so.conf.d/ice-x86_64.conf
-#   become: true
-
-# - name: zeroc ice | command ldconfig
-#   ansible.builtin.command: ldconfig
-#   become: true
-
 - name: zero ice | install python
   become: true
   ansible.builtin.dnf:
