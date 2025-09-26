@@ -16,7 +16,7 @@
 
 - name: zeroc ice | symlink binaries
   become: true
-  include_tasks.file:
+  ansible.builtin.file:
     force: true
     path: "{{ ice_binaries_symlink_dest  }}/{{ item }}"
     src: /opt/ice/bin/{{ item }}
