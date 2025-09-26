@@ -70,7 +70,7 @@
 
 - name: zeroc ice | pip install packages
   become: true
-  include_tasks.pip:
+  ansible.builtin.pip:
     name:
       - "zeroc-ice>=3.6,<3.7"
     state: present
@@ -78,7 +78,7 @@
 
 - name: zeroc ice | install python-pip for wheel
   become: true
-  include_tasks.yum:
+  ansible.builtin.yum:
     name: python-pip
     state: present
   when: ice_install_python and (ice_python_wheel | length >= 1)
