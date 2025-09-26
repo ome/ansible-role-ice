@@ -1,14 +1,14 @@
 ---
 
 - name: zeroc ice | Include ome.basedeps role
-  include_role:
+  ansible.builtin.include_role:
     name: ome.basedeps
   when: >-
     (ansible_os_family | lower == 'redhat') and
     (ansible_distribution_major_version == '9')
 
 - name: zeroc ice | Include ome.java
-  include_role:
+  ansible.builtin.include_role:
     name: ome.java
   when: >-
     (ansible_os_family | lower == 'redhat') and
@@ -16,7 +16,7 @@
 
 
 - name: zeroc ice | Include ome.jadeploy_archiveva debian
-  include_role:
+  ansible.builtin.include_role:
     name: ome.deploy_archive
   vars:
     deploy_archive_dest_dir: /opt
@@ -33,7 +33,7 @@
 
 
 - name: zeroc ice | Include ome.jadeploy_archiveva redhat
-  include_role:
+  ansible.builtin.include_role:
       name: ome.deploy_archive
   vars:
     deploy_archive_dest_dir: /opt

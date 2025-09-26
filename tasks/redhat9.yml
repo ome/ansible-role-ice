@@ -9,7 +9,7 @@
 #  state: present
 
 - name : zeroc ice | check rocky.repo file
-  stat:
+  ansible.builtin.stat:
     path: /etc/yum.repos.d/rocky.repo
   register: rockyrepo_name
 
@@ -78,7 +78,7 @@
 
 - name: zeroc ice | pip install packages
   become: true
-  pip:
+  include_tasks.pip:
     name:
       - "zeroc-ice>=3.6,<3.7"
     state: present
@@ -86,14 +86,14 @@
 
 - name: zeroc ice | install python-pip for wheel
   become: true
-  yum:
+  include_tasks.yum:
     name: python-pip
     state: present
   when: ice_install_python and (ice_python_wheel | length >= 1)
 
 - name: zeroc ice | install ice wheel package
   become: true
-  pip:
+  ansible.builtin.pip:
     name: "{{ ice_python_wheel }}"
     state: present
   when: ice_install_python and (ice_python_wheel | length >= 1)
