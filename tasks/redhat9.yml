@@ -9,7 +9,7 @@
 #  state: present
 
 - name : zeroc ice | check rocky.repo file
-  stat:
+  ansible.builtin.stat:
     path: /etc/yum.repos.d/rocky.repo
   register: rockyrepo_name
 
@@ -23,7 +23,6 @@
   when: rockyrepo_name.stat.exists
 
 - name: zeroc ice | Enable crp repo in rocky
-  become: true
   ansible.builtin.replace:
     path:  /etc/yum.repos.d/rocky.repo
     # create: false
@@ -45,14 +44,6 @@
     name:
       - libdb-cxx
     state: present
-
-# - name: zeroc ice | command echo lib64
-#   ansible.builtin.command: echo /opt/ice-3.6.5/lib64 > /etc/ld.so.conf.d/ice-x86_64.conf
-#   become: true
-
-# - name: zeroc ice | command ldconfig
-#   ansible.builtin.command: ldconfig
-#   become: true
 
 - name: zero ice | install python
   become: true
@@ -79,7 +70,7 @@
 
 - name: zeroc ice | pip install packages
   become: true
-  pip:
+  ansible.builtin.pip:
     name:
       - "zeroc-ice>=3.6,<3.7"
     state: present
@@ -87,14 +78,14 @@
 
 - name: zeroc ice | install python-pip for wheel
   become: true
-  yum:
+  ansible.builtin.yum:
     name: python-pip
     state: present
   when: ice_install_python and (ice_python_wheel | length >= 1)
 
 - name: zeroc ice | install ice wheel package
   become: true
-  pip:
+  ansible.builtin.pip:
     name: "{{ ice_python_wheel }}"
     state: present
   when: ice_install_python and (ice_python_wheel | length >= 1)
