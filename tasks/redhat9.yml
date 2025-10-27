@@ -16,7 +16,6 @@
 - name: zeroc ice | install config-manager in rocky
   become: true
   ansible.builtin.dnf:
-    update_cache: true
     name:
       - 'dnf-command(config-manager)'
     state: present
@@ -40,7 +39,6 @@
 - name: zeroc ice | install libdb
   become: true
   ansible.builtin.dnf:
-    update_cache: true
     name:
       - libdb-cxx
     state: present
@@ -48,14 +46,12 @@
 - name: zero ice | install python
   become: true
   ansible.builtin.dnf:
-    update_cache: true
     name: python
     state: present
 
 - name: zeroc ice | install ice pip dependencies
   become: true
   ansible.builtin.dnf:
-    update_cache: true
     name:
       - gcc
       - gcc-c++
