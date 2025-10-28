@@ -21,7 +21,7 @@
     state: present
   when: rockyrepo_name.stat.exists
 
-- name: zeroc ice | Enable crp repo in rocky
+- name: zeroc ice | Enable CRB repo in rocky
   ansible.builtin.replace:
     path:  /etc/yum.repos.d/rocky.repo
     # create: false
@@ -74,7 +74,7 @@
 
 - name: zeroc ice | install python-pip for wheel
   become: true
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: python-pip
     state: present
   when: ice_install_python and (ice_python_wheel | length >= 1)
