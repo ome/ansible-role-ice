@@ -15,7 +15,7 @@
     (ansible_distribution_major_version == '9')
 
 
-- name: zeroc ice | Include ome.jadeploy_archiveva debian
+- name: zeroc ice | Include ome.deploy_archive debian
   ansible.builtin.include_role:
     name: ome.deploy_archive
   vars:
@@ -32,7 +32,7 @@
       (ansible_distribution_major_version == '22')
 
 
-- name: zeroc ice | Include ome.jadeploy_archiveva redhat
+- name: zeroc ice | Include ome.deploy_archive redhat
   ansible.builtin.include_role:
       name: ome.deploy_archive
   vars:
