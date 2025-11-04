@@ -52,4 +52,4 @@ jobs:
         uses: ansible-actions/ansible-galaxy-action@v1.2.0
         with:
           galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
-          git_branch: ${{  github.ref_name }}
+          galaxy_version: ${{  github.ref_name }}
