@@ -1,12 +1,12 @@
 ---
-- import_tasks: pre_tasks.yml
+- ansible.builtin.import_tasks: pre_tasks.yml
 
-- import_tasks: redhat9.yml
+- ansible.builtin.include_tasks: redhat9.yml
   when: >-
     (ansible_os_family | lower == 'redhat') and
     (ansible_distribution_major_version == '9')
 
-- import_tasks: debian.yml
+- ansible.builtin.include_tasks: debian.yml
   when: ansible_os_family | lower == 'debian'
 
 - name: zeroc ice | Display all variables/facts known for a host
@@ -16,7 +16,7 @@
 
 - name: zeroc ice | symlink binaries
   become: true
-  file:
+  ansible.builtin.file:
     force: true
     path: "{{ ice_binaries_symlink_dest  }}/{{ item }}"
     src: /opt/ice/bin/{{ item }}

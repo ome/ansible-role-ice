@@ -1,14 +1,14 @@
 ---
 
 - name: zeroc ice | Include ome.basedeps role
-  include_role:
+  ansible.builtin.include_role:
     name: ome.basedeps
   when: >-
     (ansible_os_family | lower == 'redhat') and
     (ansible_distribution_major_version == '9')
 
 - name: zeroc ice | Include ome.java
-  include_role:
+  ansible.builtin.include_role:
     name: ome.java
   when: >-
     (ansible_os_family | lower == 'redhat') and
@@ -16,10 +16,9 @@
 
 
 - name: zeroc ice | Include ome.jadeploy_archiveva debian
-  include_role:
+  ansible.builtin.include_role:
     name: ome.deploy_archive
   vars:
-    ansible_become: yes
     deploy_archive_dest_dir: /opt
     deploy_archive_src_url: "https://github.com/\
    glencoesoftware/zeroc-ice-ubuntu2204-x86_64/releases/\
@@ -34,10 +33,9 @@
 
 
 - name: zeroc ice | Include ome.jadeploy_archiveva redhat
-  include_role:
+  ansible.builtin.include_role:
       name: ome.deploy_archive
   vars:
-    ansible_become: yes
     deploy_archive_dest_dir: /opt
     deploy_archive_src_url: "https://github.com/\
 glencoesoftware/zeroc-ice-rhel9-x86_64/releases/\
